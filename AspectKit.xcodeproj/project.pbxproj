@@ -53,8 +53,8 @@
 		58CD93C6204A8D1000E10AEB = {
 			isa = PBXGroup;
 			children = (
-				58CD93D2204A8D1000E10AEB /* AspectKit */,
-				58CD93DD204A8D1000E10AEB /* AspectKitTests */,
+				58CD93D2204A8D1000E10AEB /* Sources */,
+				58CD93DD204A8D1000E10AEB /* Tests */,
 				58CD93D1204A8D1000E10AEB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,22 +68,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		58CD93D2204A8D1000E10AEB /* AspectKit */ = {
+		58CD93D2204A8D1000E10AEB /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				58CD93D3204A8D1000E10AEB /* AspectKit.h */,
 				58CD93D4204A8D1000E10AEB /* Info.plist */,
 			);
-			path = AspectKit;
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		58CD93DD204A8D1000E10AEB /* AspectKitTests */ = {
+		58CD93DD204A8D1000E10AEB /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				58CD93DE204A8D1000E10AEB /* AspectKitTests.swift */,
 				58CD93E0204A8D1000E10AEB /* Info.plist */,
 			);
-			path = AspectKitTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,7 +341,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = AspectKit/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = moaparts.AspectKit;
@@ -362,7 +362,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = AspectKit/Info.plist;
+				INFOPLIST_FILE = Sources/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = moaparts.AspectKit;
@@ -378,7 +378,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N7742HHQG7;
-				INFOPLIST_FILE = AspectKitTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = moaparts.AspectKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -392,7 +392,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N7742HHQG7;
-				INFOPLIST_FILE = AspectKitTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = moaparts.AspectKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
