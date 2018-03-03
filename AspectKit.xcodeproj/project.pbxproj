@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5803C8D9204A95CC00DB139D /* Runtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5803C8D8204A95CC00DB139D /* Runtime.swift */; };
 		58CD93DA204A8D1000E10AEB /* AspectKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58CD93D0204A8D1000E10AEB /* AspectKit.framework */; };
 		58CD93DF204A8D1000E10AEB /* AspectKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CD93DE204A8D1000E10AEB /* AspectKitTests.swift */; };
 		58CD93E1204A8D1000E10AEB /* AspectKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 58CD93D3204A8D1000E10AEB /* AspectKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5803C8D8204A95CC00DB139D /* Runtime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Runtime.swift; sourceTree = "<group>"; };
 		58CD93D0204A8D1000E10AEB /* AspectKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AspectKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58CD93D3204A8D1000E10AEB /* AspectKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AspectKit.h; sourceTree = "<group>"; };
 		58CD93D4204A8D1000E10AEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				58CD93D3204A8D1000E10AEB /* AspectKit.h */,
+				5803C8D8204A95CC00DB139D /* Runtime.swift */,
 				58CD93D4204A8D1000E10AEB /* Info.plist */,
 			);
 			path = Sources;
@@ -148,6 +151,7 @@
 				TargetAttributes = {
 					58CD93CF204A8D1000E10AEB = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					58CD93D8204A8D1000E10AEB = {
@@ -196,6 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5803C8D9204A95CC00DB139D /* Runtime.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +339,7 @@
 		58CD93E5204A8D1000E10AEB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -347,6 +353,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = moaparts.AspectKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -355,6 +362,7 @@
 		58CD93E6204A8D1000E10AEB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -376,6 +384,7 @@
 		58CD93E8204A8D1000E10AEB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N7742HHQG7;
 				INFOPLIST_FILE = Tests/Info.plist;
@@ -390,6 +399,7 @@
 		58CD93E9204A8D1000E10AEB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N7742HHQG7;
 				INFOPLIST_FILE = Tests/Info.plist;
