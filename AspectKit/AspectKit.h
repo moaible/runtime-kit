@@ -12,5 +12,3 @@ FOUNDATION_EXPORT double AspectKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char AspectKitVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <AspectKit/PublicHeader.h>
-
-
