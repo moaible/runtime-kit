@@ -8,7 +8,7 @@ import ObjectiveC
 
 typealias PropertyType = objc_property_t
 typealias ObjectPointerType = objc_objectptr_t
-typealias IVarLayout = String
+public typealias IVarLayout = String
 
 public struct Runtime {
     
@@ -125,14 +125,14 @@ public struct Runtime {
         })
     }
     
-    internal func iVarLayout(_ clazz: AnyClass?) -> IVarLayout? {
+    public func iVarLayout(_ clazz: AnyClass?) -> IVarLayout? {
         guard let layout = class_getIvarLayout(clazz) else {
             return nil
         }
         return .init(cString: layout)
     }
     
-    internal func weakIVarLayout(_ clazz: AnyClass?) -> IVarLayout? {
+    public func weakIVarLayout(_ clazz: AnyClass?) -> IVarLayout? {
         guard let layout = class_getWeakIvarLayout(clazz) else {
             return nil
         }
