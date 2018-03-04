@@ -139,28 +139,19 @@ public struct Runtime {
         return .init(cString: layout)
     }
     
-//    internal func addMethod(_ clazz: AnyClass, _ selector: Selector, _ imp: IMP) -> Bool {
-//        class_addMethod(clazz, selector, imp, method_getTypeEncoding(<#T##m: Method##Method#>))
-//        return true
-//    }
+    internal static func addInstanceMethod(_ clazz: AnyClass, _ selector: Selector, _ imp: IMP) -> Bool {
+        guard let method = instanceMethod(clazz, selector) else {
+            return false
+        }
+        return class_addMethod(clazz, selector, imp, method_getTypeEncoding(method))
+    }
     
-    /**
-     * Adds a new method to a class with a given name and implementation.
-     *
-     * @param cls The class to which to add a method.
-     * @param name A selector that specifies the name of the method being added.
-     * @param imp A function which is the implementation of the new method. The function must take at least two arguments—self and _cmd.
-     * @param types An array of characters that describe the types of the arguments to the method.
-     *
-     * @return YES if the method was added successfully, otherwise NO
-     *  (for example, the class already contains a method implementation with that name).
-     *
-     * @note class_addMethod will add an override of a superclass's implementation,
-     *  but will not replace an existing implementation in this class.
-     *  To change an existing implementation, use method_setImplementation.
-     */
-//    @available(iOS 2.0, *)
-//    public func class_addMethod(_ cls: Swift.AnyClass?, _ name: Selector, _ imp: IMP, _ types: UnsafePointer<Int8>?) -> Bool
+    internal static func addClassMethod(_ clazz: AnyClass, _ selector: Selector, _ imp: IMP) -> Bool {
+        guard let method = classMethod(clazz, selector) else {
+            return false
+        }
+        return class_addMethod(clazz, selector, imp, method_getTypeEncoding(method))
+    }
     
     /**
      * Replaces the implementation of a method for a given class.
