@@ -84,14 +84,14 @@ class RuntimeKitTests: XCTestCase {
     
     // MARK: get class name
     
-    func testRuntimeClassName_NSObject() {
+    func testClassName_NSObject() {
         let NSObjectClassNameFromRuntime = Runtime.className(NSObject.self)
         let NSObjectClassNameFromFoundation = NSStringFromClass(NSObject.self)
         XCTAssertEqual(NSObjectClassNameFromRuntime, "NSObject")
         XCTAssertEqual(NSObjectClassNameFromRuntime, NSObjectClassNameFromFoundation)
     }
     
-    func testRuntimeClass_nested_swiftPureClass() {
+    func testClass_nested_swiftPureClass() {
         do {
             // SwiftPureClass.SwiftPureClass
             let SwiftNestedPureClassNameFromRuntime = Runtime.className(SwiftPureClass.SwiftPureClass.self)
@@ -106,7 +106,7 @@ class RuntimeKitTests: XCTestCase {
         }
     }
     
-    func testRuntimeClass_nested_swiftPureStruct_swiftPureClass() {
+    func testClass_nested_swiftPureStruct_swiftPureClass() {
         do {
             // SwiftPureStruct.SwiftPureClass
             let SwiftNestedPureClassNameFromRuntime = Runtime.className(SwiftPureStruct.SwiftPureClass.self)
@@ -121,14 +121,14 @@ class RuntimeKitTests: XCTestCase {
         }
     }
     
-    func testRuntimeClass_NSObjectSubclass() {
+    func testClass_NSObjectSubclass() {
         // NSObjectSubclass
         let NSObjectSubclassFromRuntime = Runtime.className(NSObjectSubclass.self)
         let NSObjectSubClassFromFoundation = NSStringFromClass(NSObjectSubclass.self)
         XCTAssertEqual(NSObjectSubclassFromRuntime, NSObjectSubClassFromFoundation)
     }
     
-    func testRuntimeClass_nested_NSObjectSubclass() {
+    func testClass_nested_NSObjectSubclass() {
         // NSObjectSubclass.NSObjectSubclass
         let NSObjectSubclassFromRuntime = Runtime.className(NSObjectSubclass.NSObjectSubclass.self)
         let NSObjectSubClassFromFoundation = NSStringFromClass(NSObjectSubclass.NSObjectSubclass.self)
@@ -137,7 +137,7 @@ class RuntimeKitTests: XCTestCase {
     
     // MARK: get class
     
-    func testRuntimeClass_NSObject() {
+    func testClass_NSObject() {
         guard let NSObjectClassFromRuntime: AnyClass = Runtime.class("NSObject") else {
             fatalError("failed NSObjectClassFromRuntime")
         }
@@ -145,7 +145,7 @@ class RuntimeKitTests: XCTestCase {
         XCTAssertEqual(NSStringFromClass(NSObjectClassFromRuntime), NSStringFromClass(NSObjectClass))
     }
     
-    func testRuntimeClass_HogeStruct() {
+    func testClass_HogeStruct() {
         
         struct Hoge {}
         
@@ -156,7 +156,7 @@ class RuntimeKitTests: XCTestCase {
         XCTFail("should not found struct definition from objc runtime")
     }
     
-    func testRuntimeClass_SwiftPureProtocol() {
+    func testClass_SwiftPureProtocol() {
         let desc = "should not found swift pure protocol definition from objc runtime"
         guard let _: AnyClass = Runtime.class("SwiftPureProtocol") else {
             return precondition(true, desc)
@@ -166,11 +166,11 @@ class RuntimeKitTests: XCTestCase {
     
     // MARK: get all class
     
-    func testRuntimeAllClasses() {
+    func testAllClasses() {
         XCTAssertTrue(Runtime.allClass().count > 0)
     }
     
-    func testRuntimeNSObjectInAllClasses() {
+    func testNSObjectInAllClasses() {
         let desc = "should found NSObject definition from objc runtime"
         guard let NSObjectClassFromRuntime = Runtime.allClass(isIncluded: { anyClazz in
             NSStringFromClass(anyClazz) == NSStringFromClass(NSObject.self)
@@ -183,7 +183,7 @@ class RuntimeKitTests: XCTestCase {
     
     // MARK: get meta class
     
-    func testRuntimeMetaClass_NSObject() {
+    func testMetaClass_NSObject() {
         guard let NSObjectMetaClassFromRuntime: AnyClass = Runtime.metaClass(NSObject.self) else {
             fatalError("failed NSObjectClassFromRuntime")
         }
@@ -193,7 +193,7 @@ class RuntimeKitTests: XCTestCase {
     
     // MARK: is meta class
     
-    func testRuntimeIsMetaClass_NSObject() {
+    func testIsMetaClass_NSObject() {
         guard let NSObjectMetaClassFromRuntime: AnyClass = Runtime.metaClass(NSObject.self) else {
             fatalError("failed NSObjectClassFromRuntime")
         }
@@ -204,7 +204,7 @@ class RuntimeKitTests: XCTestCase {
     
     // MARK: get super class
     
-    func testRuntimeSuperClass_NSDictionary() {
+    func testSuperClass_NSDictionary() {
         guard let NSDictionarySuperClassFromRuntime: AnyClass = Runtime.superClass(NSDictionary.self) else {
             fatalError("failed NSObjectClassFromRuntime")
         }
@@ -214,7 +214,7 @@ class RuntimeKitTests: XCTestCase {
     
     // MARK: get & set class version
     
-    func testRuntimeClassVersion_NSObject() {
+    func testClassVersion_NSObject() {
         var NSObjectClassVersion = Runtime.classVersion(NSObject.self)
         XCTAssertEqual(NSObjectClassVersion, 0)
         Runtime.setClassVersion(NSObject.self, version: 1)
@@ -227,7 +227,7 @@ class RuntimeKitTests: XCTestCase {
     
     // MARK: get class instance size
     
-    func testRuntimeClassInstanceSize_NSObject() {
+    func testClassInstanceSize_NSObject() {
         let NSObjectClassInstanceSize = Runtime.classInstanceSize(NSObject.self)
         XCTAssertEqual(NSObjectClassInstanceSize, 8)
         XCTAssertEqual(NSObjectClassInstanceSize, MemoryLayout<NSObject>.size)
