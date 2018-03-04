@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		5803C8D9204A95CC00DB139D /* Runtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5803C8D8204A95CC00DB139D /* Runtime.swift */; };
 		58CD93DA204A8D1000E10AEB /* RuntimeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58CD93D0204A8D1000E10AEB /* RuntimeKit.framework */; };
-		58CD93DF204A8D1000E10AEB /* AspectKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CD93DE204A8D1000E10AEB /* AspectKitTests.swift */; };
+		58CD93DF204A8D1000E10AEB /* RuntimeKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58CD93DE204A8D1000E10AEB /* RuntimeKitTests.swift */; };
 		58CD93E1204A8D1000E10AEB /* RuntimeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 58CD93D3204A8D1000E10AEB /* RuntimeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
@@ -29,7 +29,7 @@
 		58CD93D3204A8D1000E10AEB /* RuntimeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RuntimeKit.h; sourceTree = "<group>"; };
 		58CD93D4204A8D1000E10AEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		58CD93D9204A8D1000E10AEB /* RuntimeKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RuntimeKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		58CD93DE204A8D1000E10AEB /* AspectKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AspectKitTests.swift; sourceTree = "<group>"; };
+		58CD93DE204A8D1000E10AEB /* RuntimeKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeKitTests.swift; sourceTree = "<group>"; };
 		58CD93E0204A8D1000E10AEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,7 +83,7 @@
 		58CD93DD204A8D1000E10AEB /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				58CD93DE204A8D1000E10AEB /* AspectKitTests.swift */,
+				58CD93DE204A8D1000E10AEB /* RuntimeKitTests.swift */,
 				58CD93E0204A8D1000E10AEB /* Info.plist */,
 			);
 			path = Tests;
@@ -208,7 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				58CD93DF204A8D1000E10AEB /* AspectKitTests.swift in Sources */,
+				58CD93DF204A8D1000E10AEB /* RuntimeKitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
