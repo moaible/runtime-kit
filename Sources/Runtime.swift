@@ -8,6 +8,8 @@ import ObjectiveC
 
 public struct Runtime {
     
+    // MARK : -
+    
     public static func className(_ clazz: AnyClass) -> String {
         return .init(cString: object_getClassName(clazz))
     }
@@ -31,7 +33,7 @@ public struct Runtime {
     }
     
     public static func metaClass(_ clazz: AnyClass) -> AnyClass? {
-        return objc_getMetaClass(UnsafeMutablePointer<Int8>(mutating: self.className(clazz))) as? AnyClass
+        return objc_getMetaClass(UnsafeMutablePointer<Int8>(mutating: className(clazz))) as? AnyClass
     }
     
     public static func isMetaClass(_ clazz: AnyClass) -> Bool {
@@ -40,5 +42,25 @@ public struct Runtime {
     
     public static func superClass(_ clazz: AnyClass) -> AnyClass? {
         return class_getSuperclass(clazz)
+    }
+    
+    public static func classVersion(_ clazz: AnyClass) -> Int32 {
+        return class_getVersion(clazz)
+    }
+    
+    public static func setClassVersion(_ clazz: AnyClass, version: Int32) {
+        class_setVersion(clazz, version)
+    }
+    
+    public static func classInstanceSize(_ clazz: AnyClass) -> Int {
+        return class_getInstanceSize(clazz)
+    }
+    
+    internal static func instanceVariable(_ clazz: AnyClass, with instanceName: String) -> Ivar? {
+        return class_getInstanceVariable(clazz, UnsafeMutablePointer<Int8>(mutating: instanceName))
+    }
+    
+    internal static func classVariable(_ clazz: AnyClass, with instanceName: String) -> Ivar? {
+        return class_getClassVariable(clazz, UnsafeMutablePointer<Int8>(mutating: instanceName))
     }
 }

@@ -84,7 +84,7 @@ class AspectKitTests: XCTestCase {
     
     // MARK: get class name
     
-    func testRuntimeClassName() {
+    func testRuntimeClassName_NSObject() {
         let NSObjectClassNameFromRuntime = Runtime.className(NSObject.self)
         let NSObjectClassNameFromFoundation = NSStringFromClass(NSObject.self)
         XCTAssertEqual(NSObjectClassNameFromRuntime, "NSObject")
@@ -210,6 +210,27 @@ class AspectKitTests: XCTestCase {
         }
         let NSObjectClass = NSObject.self
         XCTAssertEqual(NSStringFromClass(NSDictionarySuperClassFromRuntime), NSStringFromClass(NSObjectClass))
+    }
+    
+    // MARK: get & set class version
+    
+    func testRuntimeClassVersion_NSObject() {
+        var NSObjectClassVersion = Runtime.classVersion(NSObject.self)
+        XCTAssertEqual(NSObjectClassVersion, 0)
+        Runtime.setClassVersion(NSObject.self, version: 1)
+        NSObjectClassVersion = Runtime.classVersion(NSObject.self)
+        XCTAssertEqual(NSObjectClassVersion, 1)
+        Runtime.setClassVersion(NSObject.self, version: 0)
+        NSObjectClassVersion = Runtime.classVersion(NSObject.self)
+        XCTAssertEqual(NSObjectClassVersion, 0)
+    }
+    
+    // MARK: get class instance size
+    
+    func testRuntimeClassInstanceSize_NSObject() {
+        let NSObjectClassInstanceSize = Runtime.classInstanceSize(NSObject.self)
+        XCTAssertEqual(NSObjectClassInstanceSize, 8)
+        XCTAssertEqual(NSObjectClassInstanceSize, MemoryLayout<NSObject>.size)
     }
     
     // MARK: -
