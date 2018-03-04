@@ -4,7 +4,7 @@
 //
 
 import XCTest
-@testable import AspectKit
+@testable import RuntimeKit
 
 class SwiftPureClass {
     class SwiftPureClass {
@@ -68,7 +68,7 @@ class NSObjectSubclass: NSObject {
 
 protocol SwiftPureProtocol {}
 
-class AspectKitTests: XCTestCase {
+class RuntimeKitTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -237,8 +237,8 @@ class AspectKitTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        measure {
+            
         }
     }
 }
