@@ -6,9 +6,9 @@
 import Foundation
 import ObjectiveC
 
-typealias ObjCPropertyType = objc_property_t
-typealias ObjCObjectPointerType = objc_objectptr_t
-typealias ObjCIVarLayout = String
+typealias PropertyType = objc_property_t
+typealias ObjectPointerType = objc_objectptr_t
+typealias IVarLayout = String
 
 public struct Runtime {
     
@@ -113,11 +113,11 @@ public struct Runtime {
         return class_conformsToProtocol(clazz, aProtocol)
     }
     
-    internal static func property(_ clazz: AnyClass, _ propertyName: String) -> ObjCPropertyType? {
+    internal static func property(_ clazz: AnyClass, _ propertyName: String) -> PropertyType? {
         return class_getProperty(clazz, UnsafeMutablePointer<Int8>(mutating: propertyName))
     }
     
-    internal static func properties(_ clazz: AnyClass) -> [ObjCPropertyType] {
+    internal static func properties(_ clazz: AnyClass) -> [PropertyType] {
         var count: UInt32 = 0
         let ret = class_copyPropertyList(clazz, &count)
         return (0 ..< Int(count)).flatMap({ (idx: Int) in
@@ -125,14 +125,14 @@ public struct Runtime {
         })
     }
     
-    internal func ivarLayout(_ clazz: AnyClass?) -> ObjCIVarLayout? {
+    internal func iVarLayout(_ clazz: AnyClass?) -> IVarLayout? {
         guard let layout = class_getIvarLayout(clazz) else {
             return nil
         }
         return .init(cString: layout)
     }
     
-    internal func weakIVarLayout(_ clazz: AnyClass?) -> ObjCIVarLayout? {
+    internal func weakIVarLayout(_ clazz: AnyClass?) -> IVarLayout? {
         guard let layout = class_getWeakIvarLayout(clazz) else {
             return nil
         }
