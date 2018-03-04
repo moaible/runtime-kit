@@ -6,6 +6,10 @@
 import Foundation
 import ObjectiveC
 
+typealias ObjCPropertyType = objc_property_t
+typealias ObjCObjectPointerType = objc_objectptr_t
+typealias ObjCIVarLayout = String
+
 public struct Runtime {
     
     // MARK : -
@@ -21,15 +25,16 @@ public struct Runtime {
     public static func allClass(isIncluded: (AnyClass) -> Bool = { _ in true }) -> [AnyClass] {
         let expectedClassCount = objc_getClassList(nil, 0)
         let rawClasses = UnsafeMutablePointer<AnyClass?>.allocate(capacity: Int(expectedClassCount))
+        defer {
+            free(rawClasses)
+        }
         let classesCount = Int(objc_getClassList(AutoreleasingUnsafeMutablePointer(rawClasses), expectedClassCount))
-        let allClazz: [AnyClass] = (0 ..< classesCount).flatMap({ (idx: Int) in
+        return (0 ..< classesCount).flatMap({ (idx: Int) in
             guard let clazz: AnyClass = rawClasses[idx], isIncluded(clazz) else {
                 return nil
             }
             return clazz
         })
-        free(rawClasses)
-        return allClazz
     }
     
     public static func metaClass(_ clazz: AnyClass) -> AnyClass? {
@@ -62,5 +67,75 @@ public struct Runtime {
     
     internal static func classVariable(_ clazz: AnyClass, with instanceName: String) -> Ivar? {
         return class_getClassVariable(clazz, UnsafeMutablePointer<Int8>(mutating: instanceName))
+    }
+    
+    internal static func classVariables(_ clazz: AnyClass) -> [Ivar] {
+        var count: UInt32 = 0
+        let ret = class_copyIvarList(clazz, &count)
+        return (0 ..< Int(count)).flatMap({ (idx: Int) in
+            ret?[idx]
+        })
+    }
+    
+    internal static func instanceMethod(_ clazz: AnyClass, _ selector: Selector) -> Method? {
+        return class_getInstanceMethod(clazz, selector)
+    }
+    
+    internal static func classMethod(_ clazz: AnyClass, _ selector: Selector) -> Method? {
+        return class_getClassMethod(clazz, selector)
+    }
+    
+    internal static func methodIMP(_ clazz: AnyClass, _ selector: Selector) -> IMP? {
+        return class_getMethodImplementation(clazz, selector)
+    }
+    
+    internal static func methods(_ clazz: AnyClass) -> [Method] {
+        var count: UInt32 = 0
+        let ret = class_copyMethodList(clazz, &count)
+        return (0 ..< Int(count)).flatMap({ (idx: Int) in
+            ret?[idx]
+        })
+    }
+    
+    internal static func protocols(_ clazz: AnyClass) -> [Protocol] {
+        var count: UInt32 = 0
+        let ret = class_copyProtocolList(clazz, &count)
+        return (0 ..< Int(count)).flatMap({ (idx: Int) in
+            ret?[idx]
+        })
+    }
+    
+    public static func responds(_ clazz: AnyClass, to selector: Selector) -> Bool {
+        return class_respondsToSelector(clazz, selector)
+    }
+    
+    public static func conforms(_ clazz: AnyClass, to aProtocol: Protocol) -> Bool {
+        return class_conformsToProtocol(clazz, aProtocol)
+    }
+    
+    internal static func property(_ clazz: AnyClass, _ propertyName: String) -> ObjCPropertyType? {
+        return class_getProperty(clazz, UnsafeMutablePointer<Int8>(mutating: propertyName))
+    }
+    
+    internal static func properties(_ clazz: AnyClass) -> [ObjCPropertyType] {
+        var count: UInt32 = 0
+        let ret = class_copyPropertyList(clazz, &count)
+        return (0 ..< Int(count)).flatMap({ (idx: Int) in
+            ret?[idx]
+        })
+    }
+    
+    internal func ivarLayout(_ clazz: AnyClass?) -> ObjCIVarLayout? {
+        guard let layout = class_getIvarLayout(clazz) else {
+            return nil
+        }
+        return .init(cString: layout)
+    }
+    
+    internal func weakIVarLayout(_ clazz: AnyClass?) -> ObjCIVarLayout? {
+        guard let layout = class_getWeakIvarLayout(clazz) else {
+            return nil
+        }
+        return .init(cString: layout)
     }
 }
