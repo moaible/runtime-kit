@@ -125,14 +125,14 @@ public struct Runtime {
         })
     }
     
-    public func iVarLayout(_ clazz: AnyClass?) -> IVarLayout? {
+    public static func iVarLayout(_ clazz: AnyClass?) -> IVarLayout? {
         guard let layout = class_getIvarLayout(clazz) else {
             return nil
         }
         return .init(cString: layout)
     }
     
-    public func weakIVarLayout(_ clazz: AnyClass?) -> IVarLayout? {
+    public static func weakIVarLayout(_ clazz: AnyClass?) -> IVarLayout? {
         guard let layout = class_getWeakIvarLayout(clazz) else {
             return nil
         }
