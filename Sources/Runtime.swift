@@ -190,17 +190,9 @@ public struct Runtime {
 //    @available(iOS 2.0, *)
 //    public func class_addIvar(_ cls: Swift.AnyClass?, _ name: UnsafePointer<Int8>, _ size: Int, _ alignment: UInt8, _ types: UnsafePointer<Int8>?) -> Bool
     
-    /**
-     * Adds a protocol to a class.
-     *
-     * @param cls The class to modify.
-     * @param protocol The protocol to add to \e cls.
-     *
-     * @return \c YES if the method was added successfully, otherwise \c NO
-     *  (for example, the class already conforms to that protocol).
-     */
-//    @available(iOS 2.0, *)
-//    public func class_addProtocol(_ cls: Swift.AnyClass?, _ protocol: Protocol) -> Bool
+    public static func addProtocol(_ clazz: AnyClass, to aProtocol: Protocol) -> Bool {
+        return class_addProtocol(clazz, aProtocol)
+    }
     
     /**
      * Adds a property to a class.
