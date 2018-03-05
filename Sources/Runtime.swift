@@ -539,26 +539,13 @@ public struct Runtime {
 //    @available(iOS 2.0, *)
 //    public func objc_copyProtocolList(_ outCount: UnsafeMutablePointer<UInt32>?) -> AutoreleasingUnsafeMutablePointer<Protocol>?
     
-    /**
-     * Returns a Boolean value that indicates whether two protocols are equal.
-     *
-     * @param proto A protocol.
-     * @param other A protocol.
-     *
-     * @return \c YES if \e proto is the same as \e other, otherwise \c NO.
-     */
-//    @available(iOS 2.0, *)
-//    public func protocol_isEqual(_ proto: Protocol?, _ other: Protocol?) -> Bool
+    public static func isEqualProtocol(_ lhs: Protocol, _ rhs: Protocol) -> Bool {
+        return protocol_isEqual(lhs, rhs)
+    }
     
-    /**
-     * Returns the name of a protocol.
-     *
-     * @param p A protocol.
-     *
-     * @return The name of the protocol \e p as a C string.
-     */
-//    @available(iOS 2.0, *)
-//    public func protocol_getName(_ proto: Protocol) -> UnsafePointer<Int8>
+    public static func protocolName(_ aProtocol: Protocol) -> String {
+        return .init(cString: protocol_getName(aProtocol))
+    }
     
     /**
      * Returns a method description structure for a specified method of a given protocol.
