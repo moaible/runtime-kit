@@ -430,15 +430,12 @@ public struct Runtime {
     
     /* Working with Instance Variables */
     
-    /**
-     * Returns the name of an instance variable.
-     *
-     * @param v The instance variable you want to enquire about.
-     *
-     * @return A C string containing the instance variable's name.
-     */
-//    @available(iOS 2.0, *)
-//    public func ivar_getName(_ v: Ivar) -> UnsafePointer<Int8>?
+    internal static func ivarName(_ ivar: Ivar) -> String? {
+        guard let ivarName = ivar_getName(ivar) else {
+            return nil
+        }
+        return .init(cString: ivarName)
+    }
     
     /**
      * Returns the type string of an instance variable.
@@ -514,17 +511,9 @@ public struct Runtime {
     
     /* Working with Protocols */
     
-    /**
-     * Returns a specified protocol.
-     *
-     * @param name The name of a protocol.
-     *
-     * @return The protocol named \e name, or \c NULL if no protocol named \e name could be found.
-     *
-     * @note This function acquires the runtime lock.
-     */
-//    @available(iOS 2.0, *)
-//    public func objc_getProtocol(_ name: UnsafePointer<Int8>) -> Protocol?
+    public static func `protocol`(_ protocolName: String) -> Protocol? {
+        return objc_getProtocol(UnsafeMutablePointer<Int8>(mutating: protocolName))
+    }
     
     /**
      * Returns an array of all the protocols known to the runtime.
@@ -707,15 +696,12 @@ public struct Runtime {
 //    @available(iOS 2.0, *)
 //    public func objc_copyImageNames(_ outCount: UnsafeMutablePointer<UInt32>?) -> UnsafeMutablePointer<UnsafePointer<Int8>>
     
-    /**
-     * Returns the dynamic library name a class originated from.
-     *
-     * @param cls The class you are inquiring about.
-     *
-     * @return The name of the library containing this class.
-     */
-//    @available(iOS 2.0, *)
-//    public func class_getImageName(_ cls: Swift.AnyClass?) -> UnsafePointer<Int8>?
+    public static func libraryName(_ clazz: AnyClass) -> String? {
+        guard let imageName = class_getImageName(clazz) else {
+            return nil
+        }
+        return .init(cString: imageName)
+    }
     
     /**
      * Returns the names of all the classes within a library.
@@ -730,30 +716,13 @@ public struct Runtime {
     
     /* Working with Selectors */
     
-    /**
-     * Returns the name of the method specified by a given selector.
-     *
-     * @param sel A pointer of type \c SEL. Pass the selector whose name you wish to determine.
-     *
-     * @return A C string indicating the name of the selector.
-     */
-//    @available(iOS 2.0, *)
-//    public func sel_getName(_ sel: Selector) -> UnsafePointer<Int8>
+    public static func selectorName(_ selector: Selector) -> String {
+        return .init(cString: sel_getName(selector))
+    }
     
-    /**
-     * Registers a method with the Objective-C runtime system, maps the method
-     * name to a selector, and returns the selector value.
-     *
-     * @param str A pointer to a C string. Pass the name of the method you wish to register.
-     *
-     * @return A pointer of type SEL specifying the selector for the named method.
-     *
-     * @note You must register a method name with the Objective-C runtime system to obtain the
-     *  method’s selector before you can add the method to a class definition. If the method name
-     *  has already been registered, this function simply returns the selector.
-     */
-//    @available(iOS 2.0, *)
-//    public func sel_registerName(_ str: UnsafePointer<Int8>) -> Selector
+    public static func selector(_ selectorName: String) -> Selector {
+        return sel_registerName(UnsafeMutablePointer<Int8>(mutating: selectorName))
+    }
     
     /**
      * Returns a Boolean value that indicates whether two selectors are equal.
