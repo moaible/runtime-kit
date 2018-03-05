@@ -183,7 +183,7 @@ public struct Runtime {
 //    @available(iOS 2.0, *)
 //    public func class_addIvar(_ cls: Swift.AnyClass?, _ name: UnsafePointer<Int8>, _ size: Int, _ alignment: UInt8, _ types: UnsafePointer<Int8>?) -> Bool
     
-    public static func addProtocol(_ clazz: AnyClass, to aProtocol: Protocol) -> Bool {
+    public static func addProtocol(_ clazz: AnyClass, with aProtocol: Protocol) -> Bool {
         return class_addProtocol(clazz, aProtocol)
     }
     
@@ -212,14 +212,9 @@ public struct Runtime {
 //    @available(iOS 4.3, *)
 //    public func class_replaceProperty(_ cls: Swift.AnyClass?, _ name: UnsafePointer<Int8>, _ attributes: UnsafePointer<objc_property_attribute_t>?, _ attributeCount: UInt32)
     
-    /**
-     * Sets the Ivar layout for a given class.
-     *
-     * @param cls The class to modify.
-     * @param layout The layout of the \c Ivars for \e cls.
-     */
-//    @available(iOS 2.0, *)
-//    public func class_setIvarLayout(_ cls: Swift.AnyClass?, _ layout: UnsafePointer<UInt8>?)
+    internal static func setIvarLayout(_ clazz: AnyClass, with layout: IvarLayout) {
+        class_setIvarLayout(clazz, UnsafeMutablePointer<UInt8>(mutating: layout))
+    }
     
     /**
      * Sets the layout for weak Ivars for a given class.
