@@ -724,18 +724,9 @@ public struct Runtime {
         return sel_registerName(UnsafeMutablePointer<Int8>(mutating: selectorName))
     }
     
-    /**
-     * Returns a Boolean value that indicates whether two selectors are equal.
-     *
-     * @param lhs The selector to compare with rhs.
-     * @param rhs The selector to compare with lhs.
-     *
-     * @return \c YES if \e lhs and \e rhs are equal, otherwise \c NO.
-     *
-     * @note sel_isEqual is equivalent to ==.
-     */
-//    @available(iOS 2.0, *)
-//    public func sel_isEqual(_ lhs: Selector, _ rhs: Selector) -> Bool
+    public static func isEqualSelector(_ lhs: Selector, _ rhs: Selector) -> Bool {
+        return sel_isEqual(lhs, rhs)
+    }
     
     /* Objective-C Language Features */
     
