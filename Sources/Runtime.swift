@@ -153,26 +153,19 @@ public struct Runtime {
         return class_addMethod(clazz, selector, imp, method_getTypeEncoding(method))
     }
     
-    /**
-     * Replaces the implementation of a method for a given class.
-     *
-     * @param cls The class you want to modify.
-     * @param name A selector that identifies the method whose implementation you want to replace.
-     * @param imp The new implementation for the method identified by name for the class identified by cls.
-     * @param types An array of characters that describe the types of the arguments to the method.
-     *  Since the function must take at least two arguments—self and _cmd, the second and third characters
-     *  must be “@:” (the first character is the return type).
-     *
-     * @return The previous implementation of the method identified by \e name for the class identified by \e cls.
-     *
-     * @note This function behaves in two different ways:
-     *  - If the method identified by \e name does not yet exist, it is added as if \c class_addMethod were called.
-     *    The type encoding specified by \e types is used as given.
-     *  - If the method identified by \e name does exist, its \c IMP is replaced as if \c method_setImplementation were called.
-     *    The type encoding specified by \e types is ignored.
-     */
-//    @available(iOS 2.0, *)
-//    public func class_replaceMethod(_ cls: Swift.AnyClass?, _ name: Selector, _ imp: IMP, _ types: UnsafePointer<Int8>?) -> IMP?
+    internal static func replaceInstanceMethod(_ clazz: AnyClass, _ selector: Selector, _ imp: IMP) -> IMP? {
+        guard let method = instanceMethod(clazz, selector) else {
+            return nil
+        }
+        return class_replaceMethod(clazz, selector, imp, method_getTypeEncoding(method))
+    }
+    
+    internal static func replaceClassMethod(_ clazz: AnyClass, _ selector: Selector, _ imp: IMP) -> IMP? {
+        guard let method = classMethod(clazz, selector) else {
+            return nil
+        }
+        return class_replaceMethod(clazz, selector, imp, method_getTypeEncoding(method))
+    }
     
     /**
      * Adds a new instance variable to a class.
