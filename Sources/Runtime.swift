@@ -700,14 +700,9 @@ public struct Runtime {
 //    @available(iOS 4.3, *)
 //    public func objc_allocateProtocol(_ name: UnsafePointer<Int8>) -> Protocol?
     
-    /**
-     * Registers a newly constructed protocol with the runtime. The protocol
-     * will be ready for use and is immutable after this.
-     *
-     * @param proto The protocol you want to register.
-     */
-//    @available(iOS 4.3, *)
-//    public func objc_registerProtocol(_ proto: Protocol)
+    public static func registerProtocol(_ aProtocol: Protocol) {
+        objc_registerProtocol(aProtocol)
+    }
     
     /**
      * Adds a method to a protocol. The protocol must be under construction.
