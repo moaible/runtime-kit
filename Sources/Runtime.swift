@@ -237,32 +237,9 @@ public struct Runtime {
 //    @available(iOS 2.0, *)
 //    public func class_setWeakIvarLayout(_ cls: Swift.AnyClass?, _ layout: UnsafePointer<UInt8>?)
     
-    /**
-     * Used by CoreFoundation's toll-free bridging.
-     * Return the id of the named class.
-     *
-     * @return The id of the named class, or an uninitialized class
-     *  structure that will be used for the class when and if it does
-     *  get loaded.
-     *
-     * @warning Do not call this function yourself.
-     */
-    
-    /* Instantiating Classes */
-    
-    /**
-     * Creates an instance of a class, allocating memory for the class in the
-     * default malloc memory zone.
-     *
-     * @param cls The class that you wish to allocate an instance of.
-     * @param extraBytes An integer indicating the number of extra bytes to allocate.
-     *  The additional bytes can be used to store additional instance variables beyond
-     *  those defined in the class definition.
-     *
-     * @return An instance of the class \e cls.
-     */
-//    @available(iOS 2.0, *)
-//    public func class_createInstance(_ cls: Swift.AnyClass?, _ extraBytes: Int) -> Any?
+    internal static func instantiate<T: AnyObject>(_ clazz: T.Type, _ extraBytes: Int) -> T? {
+        return class_createInstance(clazz, extraBytes) as? T
+    }
     
     /**
      * Creates an instance of a class at the specific location provided.
