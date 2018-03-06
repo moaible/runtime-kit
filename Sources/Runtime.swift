@@ -183,6 +183,11 @@ public struct Runtime {
 //    @available(iOS 2.0, *)
 //    public func class_addIvar(_ cls: Swift.AnyClass?, _ name: UnsafePointer<Int8>, _ size: Int, _ alignment: UInt8, _ types: UnsafePointer<Int8>?) -> Bool
     
+    public static func addIvar<T: AnyObject>(_ clazz: T.Type, name: String) -> Bool {
+        let instance = instantiate(clazz, 0)
+        return true
+    }
+    
     public static func addProtocol(_ clazz: AnyClass, with aProtocol: Protocol) -> Bool {
         return class_addProtocol(clazz, aProtocol)
     }
