@@ -6,68 +6,6 @@
 import XCTest
 @testable import RuntimeKit
 
-class SwiftPureClass {
-    class SwiftPureClass {
-        class SwiftPureClass {}
-        struct SwiftPureStruct {}
-        class NSObjectSubclass: NSObject {}
-    }
-    
-    struct SwiftPureStruct {
-        class SwiftPureClass {}
-        struct SwiftPureStruct {}
-        class NSObjectSubclass: NSObject {}
-    }
-    
-    class NSObjectSubclass: NSObject {
-        class SwiftPureClass {}
-        struct SwiftPureStruct {}
-        class NSObjectSubclass: NSObject {}
-    }
-}
-
-struct SwiftPureStruct {
-    class SwiftPureClass {
-        class SwiftPureClass {}
-        struct SwiftPureStruct {}
-        class NSObjectSubclass: NSObject {}
-    }
-    
-    struct SwiftPureStruct {
-        class SwiftPureClass {}
-        struct SwiftPureStruct {}
-        class NSObjectSubclass: NSObject {}
-    }
-    
-    class NSObjectSubclass: NSObject {
-        class SwiftPureClass {}
-        struct SwiftPureStruct {}
-        class NSObjectSubclass: NSObject {}
-    }
-}
-
-class NSObjectSubclass: NSObject {
-    class SwiftPureClass {
-        class SwiftPureClass {}
-        struct SwiftPureStruct {}
-        class NSObjectSubclass: NSObject {}
-    }
-    
-    struct SwiftPureStruct {
-        class SwiftPureClass {}
-        struct SwiftPureStruct {}
-        class NSObjectSubclass: NSObject {}
-    }
-    
-    class NSObjectSubclass: NSObject {
-        class SwiftPureClass {}
-        struct SwiftPureStruct {}
-        class NSObjectSubclass: NSObject {}
-    }
-}
-
-protocol SwiftPureProtocol {}
-
 class RuntimeKitTests: XCTestCase {
     
     override func setUp() {
