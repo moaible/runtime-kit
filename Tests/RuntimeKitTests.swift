@@ -8,13 +8,13 @@ import XCTest
 
 class RuntimeKitTests: XCTestCase {
     
+    // MARK: - XCTest
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
@@ -29,7 +29,7 @@ class RuntimeKitTests: XCTestCase {
         XCTAssertEqual(NSObjectClassNameFromRuntime, NSObjectClassNameFromFoundation)
     }
     
-    func testClass_nested_swiftPureClass() {
+    func testClass_SwiftPureClass() {
         do {
             // SwiftPureClass.SwiftPureClass
             let SwiftNestedPureClassNameFromRuntime = Runtime.className(SwiftPureClass.SwiftPureClass.self)
@@ -44,7 +44,7 @@ class RuntimeKitTests: XCTestCase {
         }
     }
     
-    func testClass_nested_swiftPureStruct_swiftPureClass() {
+    func testClass_SwiftPureStruct_SwiftPureClass() {
         do {
             // SwiftPureStruct.SwiftPureClass
             let SwiftNestedPureClassNameFromRuntime = Runtime.className(SwiftPureStruct.SwiftPureClass.self)
@@ -66,7 +66,7 @@ class RuntimeKitTests: XCTestCase {
         XCTAssertEqual(NSObjectSubclassFromRuntime, NSObjectSubClassFromFoundation)
     }
     
-    func testClass_nested_NSObjectSubclass() {
+    func testClass_NSObjectSubclass_NSObjectSubclass() {
         // NSObjectSubclass.NSObjectSubclass
         let NSObjectSubclassFromRuntime = Runtime.className(NSObjectSubclass.NSObjectSubclass.self)
         let NSObjectSubClassFromFoundation = NSStringFromClass(NSObjectSubclass.NSObjectSubclass.self)
